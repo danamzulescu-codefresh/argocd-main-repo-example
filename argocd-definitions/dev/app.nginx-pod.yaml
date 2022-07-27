@@ -2,18 +2,17 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: nginx-pod-dev
-  namespace: codefresh
   labels:
     app: nginx-pod-dev
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
+  project: default
   destination:
     namespace: nginx-pod-dev
-    name: CLUSTER_NAME
-  project: nginx-pod
+    name: docker-ngrok
   source:
-    repoURL: https://github.com/GITHUB_USER/GITHUB_REPO.git
+    repoURL: https://github.com/nightmar39/cd-five-mins.git
     targetRevision: main
     path: ./k8s-resources/nginx-pod/dev
   syncPolicy:

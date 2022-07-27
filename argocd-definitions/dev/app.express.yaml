@@ -2,7 +2,6 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: express-dev
-  namespace: codefresh
   labels:
     app: express-dev
   finalizers:
@@ -10,14 +9,15 @@ metadata:
 spec:
   destination:
     namespace: express-dev
-    name: CLUSTER_NAME
-  project: express
+    name: docker-ngrok
+  project: default
   source:
     path: ./k8s-resources/express/overlays/dev
-    repoURL: https://github.com/GITHUB_USER/GITHUB_REPO.git
+    repoURL: https://github.com/nightmar39/cd-five-mins.git
     targetRevision: main
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
     automated:
       prune: true
+      selfHeal: true

@@ -1,10 +1,9 @@
-apiVersion: argoproj.io/v1alpha1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: express-microservice
-  namespace: codefresh
 spec:
-  replicas: 4
+  replicas: 3
   # revisionHistoryLimit>2 not supported right now
   revisionHistoryLimit: 2 
   selector:
